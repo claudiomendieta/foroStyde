@@ -60,7 +60,7 @@ return [
             'strict' => true,
             'engine' => null,
         ],
-        'mysql_tests' => [ 
+        'mysql_tests' => [  
             'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
@@ -79,7 +79,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Migration Repository Table ##
+    | Migration Repository Table ############
     |--------------------------------------------------------------------------
     |
     | This table keeps track of all the migrations that have already run for
