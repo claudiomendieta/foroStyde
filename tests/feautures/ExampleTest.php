@@ -1,7 +1,7 @@
 <?php
 
 
-class ExampleTest extends FeatureTextCase {
+class ExampleTest extends FeatureTestCase {
     
 
     function test_basic_example() {
