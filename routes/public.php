@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,5 +19,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('post/{post}', [
+    'as' => 'posts.show',
+    'uses' => 'PostController@show'
+])->where('posts', '\d+');
+
 
 
