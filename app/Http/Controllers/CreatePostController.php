@@ -12,6 +12,8 @@ class CreatePostController extends Controller {
     public function create() {
         return view('posts.create');
     }
+    
+    
 
     public function store(Request $request) {
         $this->validate($request, [
@@ -25,5 +27,7 @@ class CreatePostController extends Controller {
         
         return 'Posts: ' . $post->title;
     }
+    
+    
 
 }

@@ -1,32 +1,50 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ShowPostTest extends TestCase {
+use App\Post;
 
-    public function test_a_user_can_see_a_post() {
+class ShowPostTest extends FeatureTestCase {
+
+    function test_a_user_can_see_the_post_details() {  
 
         //Having
-        
+
         $user = $this->defaultUser([
             'name' => 'Claudio Mendieta'
         ]);
-        
-        $post = factory(\App\Post::class)->make([
+
+        $post = $this->createPost([
             'title' => 'Como instalar laravel',
-            'content' => 'Este es el contenido del post'
+            'content' => 'Este es el contenido del post',
+            'user_id' => $user->id,
         ]);
-        
-        $user->posts()->save($post);
-        
+
+
         //When
-        
-        $this->visit(route('posts.show',$post))
+
+        $this->visit($post->url)
                 ->seeInElement('h1', $post->title)
                 ->see($post->comment)
                 ->see($post->name);
+    }
+
+    function test_old_urls_are_redirected() {
+        
+       
+        $post = $this->createPost([
+            'title' => 'Old title'
+        ]);
+        
+        
+        
+        $url = $post->url;
+        
+        $post->update(['title'=>'New title']);
+        
+        $this->visit($url)
+                ->seePageIs($post->url);
+                
+                
     }
 
 }
